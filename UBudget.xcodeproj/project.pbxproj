@@ -117,6 +117,7 @@
 		263702A226D428C100F8D4C5 /* DeductiblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductiblesView.swift; sourceTree = "<group>"; };
 		263702A426D4297500F8D4C5 /* DeductibleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductibleWidget.swift; sourceTree = "<group>"; };
 		263CD11226ED01D700E2A07E /* CrossButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossButton.swift; sourceTree = "<group>"; };
+		263F186F2731BF4500F6D07E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2648514D26B093DF009954C6 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		2667BFF526CFD5EE0025F6A1 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		267C477F26DD4CE5003FA716 /* SaveStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStruct.swift; sourceTree = "<group>"; };
@@ -324,6 +325,7 @@
 		26D2D8F926B0421C003FA725 = {
 			isa = PBXGroup;
 			children = (
+				263F186F2731BF4500F6D07E /* README.md */,
 				26818F3826FF803B00A0FEBE /* UBudgetWidgetExtension.entitlements */,
 				26D2D90426B0421C003FA725 /* UBudget */,
 				26818F2A26FF7C4400A0FEBE /* UBudgetWidget */,
