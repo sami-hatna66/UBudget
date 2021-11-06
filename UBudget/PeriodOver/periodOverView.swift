@@ -28,7 +28,7 @@ struct periodOverView: View {
                 Text("You have reached the end of your budgeting period").foregroundColor(.white).font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center).padding(.bottom, 10)
                 
                 Button(action: {
-                    print("{og")
+                    UserDefaults.standard.set(true, forKey: "didLaunchBefore")
                 }) {
                     ZStack (alignment: .center) {
                         RoundedRectangle(cornerRadius: 30).fill(Color.white).frame(width: 200, height: 40)

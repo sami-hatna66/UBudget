@@ -347,8 +347,8 @@
 		26D2D90426B0421C003FA725 /* UBudget */ = {
 			isa = PBXGroup;
 			children = (
-				26B637102726F344004FA504 /* PeriodOver */,
 				26818F3726FF7F4600A0FEBE /* UBudget.entitlements */,
+				26B637102726F344004FA504 /* PeriodOver */,
 				26BDB1A826E2A01700BA0201 /* Guide */,
 				2609424926D295AB00600B42 /* Explore */,
 				2609424426D2950200600B42 /* Settings */,

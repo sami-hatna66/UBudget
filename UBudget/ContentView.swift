@@ -191,45 +191,44 @@ struct ContentView: View {
     }
     
     var body: some View {
-        periodOverView(graphData: previousWeekData)
-//        if didLaunchBefore {
-//            Onboarding().edgesIgnoringSafeArea(.bottom)
-//        }
-//        else if showingSettings {
-//            SettingsView(showingSettings: $showingSettings, notOnBudget: notOnBudget, deductibleCollection: deductibles, startDate: start, endDate: end, needsUpdating: $needsUpdating, checkStart: start, checkEnd: end, checkNotOnBudget: notOnBudget)
-//        }
-//        else if showingExplore {
-//            ExploreView(graphData: previousWeekData, showingExplore: $showingExplore)
-//        }
-//        else if showingGuide {
-//            GuideView(showingGuide: $showingGuide)
-//        }
-//        else if timePeriodOver {
-//            periodOverView(graphData: previousWeekData)
-//        }
-//        else {
-//            Home(showingSettings: $showingSettings, showingExplore: $showingExplore, showingGuide: $showingGuide, deductibleList: $deductibleList, weeklyBudget: weeklyBudget, yearTotal: total, rolloverChoice: rolloverChoice, start: start, end: end, notOnBudget: notOnBudget, difference: difference, showGuideOverlay: $showGuideOverlay)
-//                .onAppear {
-//                    print("total: " + String(total))
-//                    needsUpdating = false
-//                    if hasChecked == false {
-//                        deductibles.forEach {
-//                            if $0.active {
-//                                if (launchPrevDate.isSame(input: Date(), granularity: .weekOfYear) == false) && ($0.interval == "Weekly") {
-//                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
-//                                }
-//                                if (launchPrevDate.isSame(input: Date(), granularity: .month) == false) && ($0.interval == "Monthly") {
-//                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
-//                                }
-//                                if (launchPrevDate.isSame(input: Date(), granularity: .day) == false) && ($0.interval == "Daily") {
-//                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
-//                                }
-//                            }
-//                        }
-//                        hasChecked = true
-//                    }
-//            }
-//        }
+        if didLaunchBefore {
+            Onboarding().edgesIgnoringSafeArea(.bottom)
+        }
+        else if showingSettings {
+            SettingsView(showingSettings: $showingSettings, notOnBudget: notOnBudget, deductibleCollection: deductibles, startDate: start, endDate: end, needsUpdating: $needsUpdating, checkStart: start, checkEnd: end, checkNotOnBudget: notOnBudget)
+        }
+        else if showingExplore {
+            ExploreView(graphData: previousWeekData, showingExplore: $showingExplore)
+        }
+        else if showingGuide {
+            GuideView(showingGuide: $showingGuide)
+        }
+        else if timePeriodOver {
+            periodOverView(graphData: previousWeekData)
+        }
+        else {
+            Home(showingSettings: $showingSettings, showingExplore: $showingExplore, showingGuide: $showingGuide, deductibleList: $deductibleList, weeklyBudget: weeklyBudget, yearTotal: total, rolloverChoice: rolloverChoice, start: start, end: end, notOnBudget: notOnBudget, difference: difference, showGuideOverlay: $showGuideOverlay)
+                .onAppear {
+                    print("total: " + String(total))
+                    needsUpdating = false
+                    if hasChecked == false {
+                        deductibles.forEach {
+                            if $0.active {
+                                if (launchPrevDate.isSame(input: Date(), granularity: .weekOfYear) == false) && ($0.interval == "Weekly") {
+                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
+                                }
+                                if (launchPrevDate.isSame(input: Date(), granularity: .month) == false) && ($0.interval == "Monthly") {
+                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
+                                }
+                                if (launchPrevDate.isSame(input: Date(), granularity: .day) == false) && ($0.interval == "Daily") {
+                                    deductibleList.append("-" + currencySymbol + String(format: "%.2f", $0.amount) + " (" + $0.name + ")")
+                                }
+                            }
+                        }
+                        hasChecked = true
+                    }
+            }
+        }
     }
 }
 
