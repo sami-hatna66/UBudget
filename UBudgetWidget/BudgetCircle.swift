@@ -17,7 +17,12 @@ struct BudgetCircle: View {
     
     var body: some View {
         ZStack {
-            Text(currencySymbol + String(format: "%.2f", spend)).foregroundColor(colorScheme == .dark ? .white : .black).font(Font.custom("DIN", size: 60)).frame(width: 70).lineLimit(1).minimumScaleFactor(0.1)
+            Text(currencySymbol + String(format: "%.2f", spend))
+                .foregroundColor(colorScheme == .dark ? .white : .black)
+                .font(Font.custom("DIN", size: 60))
+                .frame(width: 70)
+                .lineLimit(1)
+                .minimumScaleFactor(0.1)
             
             Circle()
                 .stroke(colorScheme == .dark ? Color.white : Color.black, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))

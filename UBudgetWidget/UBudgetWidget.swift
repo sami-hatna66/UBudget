@@ -12,16 +12,32 @@ struct Provider: TimelineProvider {
     let userDefaults = UserDefaults(suiteName: "group.com.my.app.unibudgeter") ?? UserDefaults.standard
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), weeklySpend: 0.0, weeklyTotal: 0.0, globalTotal: 0.0, remainingTotal: 0.0)
+        SimpleEntry(
+            date: Date(),
+            weeklySpend: 0.0,
+            weeklyTotal: 0.0,
+            globalTotal: 0.0,
+            remainingTotal: 0.0)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), weeklySpend: userDefaults.double(forKey: "weeklySpend"), weeklyTotal: userDefaults.double(forKey: "weeklyTotal"), globalTotal: userDefaults.double(forKey: "totalOverall"), remainingTotal: userDefaults.double(forKey: "total"))
+        let entry = SimpleEntry(
+            date: Date(),
+            weeklySpend: userDefaults.double(forKey: "weeklySpend"),
+            weeklyTotal: userDefaults.double(forKey: "weeklyTotal"),
+            globalTotal: userDefaults.double(forKey: "totalOverall"),
+            remainingTotal: userDefaults.double(forKey: "total"))
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let entries: [SimpleEntry] = [SimpleEntry(date: Date(), weeklySpend: userDefaults.double(forKey: "weeklySpend"), weeklyTotal: userDefaults.double(forKey: "weeklyTotal"), globalTotal: userDefaults.double(forKey: "totalOverall"), remainingTotal: userDefaults.double(forKey: "total"))]
+        
+        let entries: [SimpleEntry] = [SimpleEntry(date: Date(),
+                                                  weeklySpend: userDefaults.double(forKey: "weeklySpend"),
+                                                  weeklyTotal: userDefaults.double(forKey: "weeklyTotal"),
+                                                  globalTotal: userDefaults.double(forKey: "totalOverall"),
+                                                  remainingTotal: userDefaults.double(forKey: "total"))
+                                        ]
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -56,7 +72,11 @@ struct UBudgetWidgetEntryView : View {
             }
             
             VStack {
-                Text("Weekly Budget").foregroundColor(colorScheme == .dark ? .white : .black).font(Font.custom("DIN", size: 17)).lineLimit(1).minimumScaleFactor(0.5)
+                Text("Weekly Budget")
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .font(Font.custom("DIN", size: 17))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                 
                 BudgetCircle(currencySymbol: currencySymbol, total: entry.weeklyTotal, spend: entry.weeklySpend)
             }.padding(3)
@@ -64,7 +84,11 @@ struct UBudgetWidgetEntryView : View {
             if widgetFamily == .systemMedium {
                 Spacer()
                 VStack {
-                    Text("Overall Budget").foregroundColor(colorScheme == .dark ? .white : .black).font(Font.custom("DIN", size: 17)).lineLimit(1).minimumScaleFactor(0.5)
+                    Text("Overall Budget")
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                        .font(Font.custom("DIN", size: 17))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                     
                     BudgetCircle(currencySymbol: currencySymbol, total: entry.globalTotal, spend: entry.remainingTotal)
                 }
@@ -84,8 +108,8 @@ struct UBudgetWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             UBudgetWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("UBudget Widget")
+        .description("UBudget Widget")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
