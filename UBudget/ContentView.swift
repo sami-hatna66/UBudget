@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    // userdefaults values which also need to be accessed by the widget are saved to this bundle
     let userDefaults = UserDefaults(suiteName: "group.com.my.app.unibudgeter") ?? UserDefaults.standard
     
+    // userdefaults value indicating whether onboarding should be shown
     @AppStorage("didLaunchBefore") var didLaunchBefore: Bool = true
+    // Flags for which view to show
     @State var showingSettings = false
     @State var showingExplore = false
     @State var showingGuide = false
     
     @AppStorage("showGuideOverlay") var showGuideOverlay: Bool = true
     
+    // Bug fix
     @State var needsUpdating = false
     
+    // List which will have any applied deductibles appended to it on launch
     @State var deductibleList: [String] = []
     
     var total: Double {
         UserDefaults(suiteName: "group.com.my.app.unibudgeter")?.double(forKey: "total") ?? 0.0
     }
     
-    @AppStorage("applyRollover") var rolloverChoice: Bool = false
-    
+    // Userdefaults doesn't support date objects, so dates are saved as time intervals from 1970
     var start: Date {
         return Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "startDate"))
     }
@@ -34,6 +38,7 @@ struct ContentView: View {
         return Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "endDate"))
     }
     
+    // Check if budgeting period has been exceeded - used to determine if end screen is shown
     var timePeriodOver: Bool {
         if Date() > end {
             return true
@@ -43,6 +48,7 @@ struct ContentView: View {
         }
     }
     
+    // decode encoded object for list of DateStructs when user is not on budget
     var notOnBudget: [DateStruct] {
         if let data = UserDefaults.standard.value(forKey:"notOnBudget") as? Data {
             let returnValue = (try? PropertyListDecoder().decode(Array<DateStruct>.self, from: data))!
@@ -53,6 +59,7 @@ struct ContentView: View {
         }
     }
     
+    // Retrieve list of deductibles saved to userdefaults
     var deductibles: [DeductibleStruct] {
         if let data = UserDefaults.standard.value(forKey: "deductibles") as? Data {
             let returnValue = (try? PropertyListDecoder().decode(Array<DeductibleStruct>.self, from: data))!
@@ -63,13 +70,16 @@ struct ContentView: View {
         }
     }
     
+    // Get local currency symbol
     var currencySymbol: String {
         let locale = Locale.current
         return locale.currencySymbol!
     }
     
+    // previousWeekData used
     var previousWeekData: [SaveData] {
         if let data = UserDefaults.standard.value(forKey: "saveData") as? Data {
+            // Decode
             let returnValue = (try? PropertyListDecoder().decode(Array<SaveData>.self, from: data))!
             return returnValue
         }
@@ -78,15 +88,21 @@ struct ContentView: View {
         }
     }
     
+    // Get previous date/time app was launched
     let launchPrevDate = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "previousDate"))
+    
+    // Bug fix
     @State var hasChecked = false
     
+    // Calculate this weeks budget
     var weeklyBudget: [Double] {
         print(previousWeekData)
         let previousDate = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "previousDate"))
+        // If not new week then don't calculate a new budget
         if previousDate.isSame(input: Date(), granularity: .weekOfYear) && needsUpdating == false {
             print("Not new week")
             var result = userDefaults.double(forKey: "weeklySpend")
+            // Apply any deductibles which apply
             deductibles.forEach {
                 if $0.active {
                     if (previousDate.isSame(input: Date(), granularity: .month) == false) && ($0.interval == "Monthly") {
@@ -100,16 +116,22 @@ struct ContentView: View {
                     }
                 }
             }
+            // Save new values to userdefaults
             userDefaults.set(result, forKey: "weeklySpend")
             UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "previousDate")
             return [userDefaults.double(forKey: "weeklyTotal"), result]
         }
+        // If it is a new week, calculate the week's buget
         else {
+            // Year check is used to prevent bug relating to needsUpdating
             if Calendar.current.dateComponents([.year], from: previousDate).year! > 1980 && needsUpdating == false {
                 print("Saving data")
+                // Save the previous week's data
                 let savePreviousWeek = [SaveData(start: previousDate.startOfWeek!, end: previousDate.endOfWeek!, total: userDefaults.double(forKey: "weeklyTotal"), spent: userDefaults.double(forKey: "weeklyTotal") - userDefaults.double(forKey: "weeklySpend"))]
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(previousWeekData + savePreviousWeek), forKey: "saveData")
             }
+            
+            // Calculate number of days this week which need budgeting for
             print("new week")
             print(deductibles)
             let weekRange = Date() ... Date().endOfWeek!
@@ -121,6 +143,8 @@ struct ContentView: View {
                 print(String(numOfDays) + " -= 7 - " + String(end.dayNumberOfWeek()!))
                 numOfDays -= (7 - end.dayNumberOfWeek()!)
             }
+            
+            // Remove any days of the week for which user is not on budget
             notOnBudget.forEach {
                 if $0.active {
                     if weekRange.overlaps($0.start ... $0.end) {
@@ -142,11 +166,13 @@ struct ContentView: View {
             print("Yuh: " + String(numOfDays))
             var resultSpend = Double(Double(numOfDays) * (total/Double(difference)))
             
+            // Failsafe for if budget period is less than a week
             if difference <= 7 {
                 resultSpend = total
             }
                 
             let resultTotal = resultSpend
+            // Remove any deductibles which apply
             deductibles.forEach {
                 if $0.active {
                     if $0.interval == "Weekly" {
@@ -160,6 +186,8 @@ struct ContentView: View {
                     }
                 }
             }
+            
+            // needsUpdating prevents against bug where budget was being recalculated every time home view was shown
             if needsUpdating == false {
                 userDefaults.set(resultTotal, forKey: "weeklyTotal")
                 userDefaults.set(resultSpend, forKey: "weeklySpend")
@@ -176,6 +204,7 @@ struct ContentView: View {
         }
     }
     
+    // Computed variable finds number of days between current date and end of budgeting period (accounting for notOnBudget days
     var difference: Int {
         var result = Calendar.current.dateComponents([.day], from: Date(), to: end).day!
         notOnBudget.forEach {
@@ -211,11 +240,12 @@ struct ContentView: View {
             periodOverView(graphData: previousWeekData)
         }
         else {
-            Home(showingSettings: $showingSettings, showingExplore: $showingExplore, showingGuide: $showingGuide, deductibleList: $deductibleList, weeklyBudget: weeklyBudget, yearTotal: total, rolloverChoice: rolloverChoice, start: start, end: end, notOnBudget: notOnBudget, difference: difference, showGuideOverlay: $showGuideOverlay)
+            Home(showingSettings: $showingSettings, showingExplore: $showingExplore, showingGuide: $showingGuide, deductibleList: $deductibleList, weeklyBudget: weeklyBudget, yearTotal: total, start: start, end: end, notOnBudget: notOnBudget, difference: difference, showGuideOverlay: $showGuideOverlay)
                 .onAppear {
                     print("total: " + String(total))
                     needsUpdating = false
                     if hasChecked == false {
+                        // For displaying applied deductibles
                         deductibles.forEach {
                             if $0.active {
                                 if (launchPrevDate.isSame(input: Date(), granularity: .weekOfYear) == false) && ($0.interval == "Weekly") {
@@ -235,6 +265,8 @@ struct ContentView: View {
         }
     }
 }
+
+// Date extensions for making working with dates easier
 
 extension Date: RawRepresentable {
     private static let formatter = ISO8601DateFormatter()

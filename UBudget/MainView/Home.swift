@@ -18,7 +18,6 @@ struct Home: View {
     
     @State var weeklyBudget: [Double]
     @State var yearTotal: Double
-    @State var rolloverChoice: Bool
     @State var start: Date
     @State var end: Date
     @State var notOnBudget: [DateStruct]
