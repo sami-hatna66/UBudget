@@ -32,14 +32,17 @@ struct Slide: View {
         ZStack {
             Rectangle().fill(colorScheme == .dark ? Color.black : Color.white)
             VStack {
+                // Slide content changes according to index
                 Image(imageOptions[index]).resizable()
                     .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.width - 40)
                 Text(textOptions[index])
                     .font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center).padding()
             }
         }.gesture(
+            // Handles user taps
             DragGesture(minimumDistance: 0, coordinateSpace: .local)
                 .onEnded {
+                    // If tap is in right two thirds of width, move to next slide (or end story if on last slide)
                     if $0.location.x > UIScreen.main.bounds.width/3 {
                         if index < limit {
                             index += 1
@@ -48,6 +51,7 @@ struct Slide: View {
                             showingGuide = false
                         }
                     }
+                    // If tap is on left third, go back one slide
                     else {
                         if index > 0 {
                             index -= 1

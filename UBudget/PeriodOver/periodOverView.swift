@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Displays a summary screen when budgeting period is over, offering user chance to start budgeting again
+// Swipe up to view summary stats
 struct periodOverView: View {
     @State var arrowOpacity1 = 1.0
     @State var arrowOpacity2 = 0.5
@@ -31,6 +33,7 @@ struct periodOverView: View {
                     .multilineTextAlignment(.center).padding(.bottom, 10)
                 
                 Button(action: {
+                    // Redisplay onboarding screen if user wants to budget again
                     UserDefaults.standard.set(true, forKey: "didLaunchBefore")
                 }) {
                     ZStack (alignment: .center) {
@@ -42,6 +45,7 @@ struct periodOverView: View {
                 
                 Spacer()
                 
+                // Visual telling user to swipe up/down to show/dismiss view
                 VStack {
                     swipeUpArrow()
                         .stroke(Color.white, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
@@ -65,6 +69,7 @@ struct periodOverView: View {
             
         }.background(Color.white.edgesIgnoringSafeArea(.all))
             .gesture(
+                // Handles user swipes by changing DetailsView offset
                 DragGesture()
                     .onChanged { move in
                         if move.startLocation.y > move.location.y {

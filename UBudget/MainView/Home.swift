@@ -42,6 +42,7 @@ struct Home: View {
                 
                 Spacer()
                 
+                // Bottom set of buttons
                 HStack (alignment: .bottom) {
                     Spacer()
                     Button(action: {
@@ -97,6 +98,7 @@ struct Home: View {
                     }.padding(.bottom, 5)
                     .overlay(GuideOverlay().offset(x: -20, y: -65).opacity(showGuideOverlay ? 1 : 0))
                     .onAppear {
+                        // If the user is seeing this screen for the first time, display the instructional overlays
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                             withAnimation(.linear(duration: 0.5)) {
                                 showGuideOverlay = false
@@ -110,7 +112,9 @@ struct Home: View {
             }.blur(radius: CGFloat(blurRadius))
             .contentShape(Rectangle())
             .onTapGesture {
+                // Hide keyboard
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                // Hide any overlay windows
                 withAnimation(.linear(duration: 0.3)) {
                     overlayOpacity = 0.0
                     blurRadius = 0

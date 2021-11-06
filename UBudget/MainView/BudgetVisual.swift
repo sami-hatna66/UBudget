@@ -22,6 +22,7 @@ struct BudgetVisual: View {
         }
     }
     
+    // Get local currency symbol
     var currencySymbol: String {
         let locale = Locale.current
         return locale.currencySymbol!
@@ -45,6 +46,8 @@ struct BudgetVisual: View {
     
     var body: some View {
             ZStack (alignment: .center) {
+                // Visual consists of three waves overlaid, two clipped as a circle, one clipped to text
+                
                 Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent)
                     .frame(height: waveHeight)
                     .clipShape(Circle())
@@ -72,6 +75,7 @@ struct BudgetVisual: View {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
                 
+                // Wave is masked by text, creates the effect of the text being split into two colours when the wave goes through it
                 Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent)
                     .fill(colorScheme == .dark ? Color.black : Color.white)
                     .frame(height: waveHeight)
@@ -87,6 +91,7 @@ struct BudgetVisual: View {
                     .minimumScaleFactor(0.5).lineLimit(1)
                 
                 GeometryReader { g in
+                    // Display any deductibles applied
                     VStack (alignment: .leading) {
                         ForEach(deductibleList.indices, id: \.self) { index in
                             Text(deductibleList[index])
@@ -107,8 +112,9 @@ struct BudgetVisual: View {
                         }
                     }
                 }
-                
-            }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+            }
+            // If app enters background or is closed, save the current date in userdefaults ready for next launch
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                     UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "previousDate")
         }
     }

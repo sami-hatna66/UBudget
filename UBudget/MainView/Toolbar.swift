@@ -15,6 +15,7 @@ struct Toolbar: View {
     
     var body: some View {
         HStack (alignment: .center) {
+            // Show explore button
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.3)) { showingExplore.toggle() }
             }) {
@@ -30,6 +31,7 @@ struct Toolbar: View {
             
             Spacer()
             
+            // Show settings button
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.3)) { showingSettings.toggle() }
             }) {

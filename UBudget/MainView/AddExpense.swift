@@ -9,6 +9,7 @@ import SwiftUI
 import WidgetKit
 
 struct AddExpense: View {
+    // Set up app and widget shared userdefaults
     let userDefaults = UserDefaults(suiteName: "group.com.my.app.unibudgeter") ?? UserDefaults.standard
     
     @Environment(\.colorScheme) var colorScheme
@@ -19,8 +20,10 @@ struct AddExpense: View {
     @Binding var overlayOpacity: Double
     @Binding var blurRadius: Double
     
+    // Indicates whether money is being added or taken away
     @Binding var isExpense: Bool
     
+    // Get local currency symbol
     var currencySymbol: String {
         let locale = Locale.current
         return locale.currencySymbol!
@@ -49,10 +52,12 @@ struct AddExpense: View {
                     }.padding(.bottom, 10)
                     
                     Button(action: {
+                        // Two courses of action dependent on which button was pressed
                         if isExpense {
                             weeklyBudget[1] -= Double(expenseAmount) ?? 0
                             userDefaults.set(weeklyBudget[1], forKey: "weeklySpend")
                             yearTotal -= Double(expenseAmount) ?? 0
+                            // Save to shared userdefaults, should also update widget
                             UserDefaults(suiteName: "group.com.my.app.unibudgeter")?.set(yearTotal, forKey: "total")
                         }
                         else {
@@ -66,9 +71,11 @@ struct AddExpense: View {
                             UserDefaults(suiteName: "group.com.my.app.unibudgeter")?.set(yearTotal, forKey: "total")
                         }
                         
+                        // Hide keyboard
                         UIApplication.shared.sendAction(
                             #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
                         )
+                        
                         expenseAmount = ""
                         withAnimation(.linear(duration: 0.3)) {
                             overlayOpacity = 0.0
@@ -92,6 +99,7 @@ struct AddExpense: View {
     }
 }
 
+// Extension for getting the rendered width of a string using x font and y font size
 extension String {
    func widthOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [NSAttributedString.Key.font: font]

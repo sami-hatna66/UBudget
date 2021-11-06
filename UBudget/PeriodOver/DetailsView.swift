@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Displays graph of user's spending + summary statistics
+// For use on end screen shown when budgeting period concludes
 struct DetailsView: View {
     @State var graphData: [SaveData]
     
