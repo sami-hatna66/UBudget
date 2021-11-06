@@ -23,6 +23,7 @@ class ArticleViewModel: ObservableObject {
                 print("No documents")
                 return
             }
+            
             self.articles = documents.map { (queryDocumentSnapshot) -> Article in
                 let data = queryDocumentSnapshot.data()
 

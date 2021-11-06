@@ -18,7 +18,10 @@ struct CrossButton: View {
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.3)) { showingExplore.toggle() }
             }) {
-                Image(systemName: "xmark.circle").resizable().frame(width: 20, height: 20).foregroundColor(colorScheme == .dark ? .white : .black)
+                Image(systemName: "xmark.circle")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
             }.padding(.trailing, 10)
         }
     }

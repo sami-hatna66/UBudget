@@ -22,6 +22,7 @@ struct ExploreView: View {
         if isArticleOpened {
             OpenArticle(article: openArticle, isArticleOpened: $isArticleOpened, snapOffset: $snapOffset)
         }
+        
         else {
             ScrollView (showsIndicators: false) {
                 CrossButton(showingExplore: $showingExplore)

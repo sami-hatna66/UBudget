@@ -21,15 +21,23 @@ struct ThirdTab: View {
                     Backdrop()
                 }
                 else {
-                    Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93).fill(Color.black)
+                    Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93)
+                        .fill(Color.black)
                         .frame(height: UIScreen.main.bounds.height)
                 }
                 
                 VStack {
                     Text("Please input any recurring payments which you need to budget for")
-                        .foregroundColor(.white).font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(Font.custom("DIN", size: 20))
+                        .multilineTextAlignment(.center)
+                    
                     DeductiblesView(deductibleCollection: $deductibleCollection, showingSheet: $showingSheet, isOnboarding: true)
-                }.padding().opacity(index == 2 ? 1 : 0).offset(y: CGFloat(index == 2 ? 0 : 75)).animation(.easeInOut(duration: 1), value: index)
+                }
+                .padding()
+                .opacity(index == 2 ? 1 : 0)
+                .offset(y: CGFloat(index == 2 ? 0 : 75))
+                .animation(.easeInOut(duration: 1), value: index)
                 
                 Button(action: {
                     withAnimation(.linear(duration: 0.5)) {
@@ -37,8 +45,16 @@ struct ThirdTab: View {
                         blurRadius = 5
                     }
                 }) {
-                    Image(systemName: "questionmark.circle.fill").resizable().frame(width: 40, height: 40).foregroundColor(.white)
-                }.opacity(index == 2  ? 1 : 0).offset(x: UIScreen.main.bounds.width/2 - 50, y: index == 2 ? UIScreen.main.bounds.height / 2 - 100 : UIScreen.main.bounds.height / 2 - 25).animation(.easeInOut(duration: 1), value: index)
+                    Image(systemName: "questionmark.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white)
+                }
+                .opacity(index == 2  ? 1 : 0)
+                .offset(
+                    x: UIScreen.main.bounds.width/2 - 50,
+                    y: index == 2 ? UIScreen.main.bounds.height / 2 - 100 : UIScreen.main.bounds.height / 2 - 25)
+                .animation(.easeInOut(duration: 1), value: index)
             }
             .sheet(isPresented: $showingSheet) {
                 AddDeductible(deductibleCollection: $deductibleCollection, showingSheet: $showingSheet)

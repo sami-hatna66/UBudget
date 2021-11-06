@@ -49,7 +49,6 @@
 		26B95EC726DF8EB5002F462F /* LineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B95EC626DF8EB5002F462F /* LineGraph.swift */; };
 		26B95ECA26DF8ED6002F462F /* SpendGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B95EC926DF8ED6002F462F /* SpendGraph.swift */; };
 		26BB815726E9055D00FBF4FE /* StartEndWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB815626E9055D00FBF4FE /* StartEndWidget.swift */; };
-		26BD101426D95CEC00566ECF /* BubbleWaves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BD101326D95CEC00566ECF /* BubbleWaves.swift */; };
 		26BDB1AA26E2A02700BA0201 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDB1A926E2A02700BA0201 /* ProgressBar.swift */; };
 		26BDB1AC26E2A06600BA0201 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDB1AB26E2A06600BA0201 /* GuideView.swift */; };
 		26BDB1AE26E2A65500BA0201 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDB1AD26E2A65500BA0201 /* Slide.swift */; };
@@ -146,7 +145,6 @@
 		26B95EC626DF8EB5002F462F /* LineGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraph.swift; sourceTree = "<group>"; };
 		26B95EC926DF8ED6002F462F /* SpendGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendGraph.swift; sourceTree = "<group>"; };
 		26BB815626E9055D00FBF4FE /* StartEndWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndWidget.swift; sourceTree = "<group>"; };
-		26BD101326D95CEC00566ECF /* BubbleWaves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleWaves.swift; sourceTree = "<group>"; };
 		26BDB1A926E2A02700BA0201 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		26BDB1AB26E2A06600BA0201 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		26BDB1AD26E2A65500BA0201 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				26219D7726C84F2700D674DF /* Home.swift */,
 				26E67C9D26CAD9BC000A5D4C /* AddExpense.swift */,
 				2667BFF526CFD5EE0025F6A1 /* Toolbar.swift */,
-				26BD101326D95CEC00566ECF /* BubbleWaves.swift */,
 				269309C326E7DE100016D858 /* GuideOverlay.swift */,
 				262F731B26EB92A600454BF0 /* BubbleOverlay.swift */,
 			);
@@ -635,7 +632,6 @@
 				269D23D226B6EE280014523E /* DateStruct.swift in Sources */,
 				2609424B26D295B400600B42 /* ExploreView.swift in Sources */,
 				267FB32926D57F7900947352 /* CustomPicker.swift in Sources */,
-				26BD101426D95CEC00566ECF /* BubbleWaves.swift in Sources */,
 				269309C426E7DE100016D858 /* GuideOverlay.swift in Sources */,
 				263CD11326ED01D700E2A07E /* CrossButton.swift in Sources */,
 				2692B79026B1DB3B009156AF /* FourthTab.swift in Sources */,

@@ -22,28 +22,47 @@ struct FourthTab: View {
                 Backdrop()
             }
             else {
-                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93).fill(Color.black)
+                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93)
+                    .fill(Color.black)
                     .frame(height: UIScreen.main.bounds.height)
             }
             
             VStack (alignment: .leading) {
-                Text("When does the budgeting period start and end?").foregroundColor(.white).font(Font.custom("DIN", size: 30)).multilineTextAlignment(.center).padding(.bottom, 20)
+                Text("When does the budgeting period start and end?")
+                    .foregroundColor(.white)
+                    .font(Font.custom("DIN", size: 30))
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 20)
+                
                 HStack {
-                    Text("Start: ").foregroundColor(.white).font(Font.custom("DIN", size: 25))
+                    Text("Start: ")
+                        .foregroundColor(.white)
+                        .font(Font.custom("DIN", size: 25))
                     DatePicker("", selection: $start, displayedComponents: [.date])
                         .labelsHidden()
                         .accentColor(Color.black)
-                        .background(RoundedRectangle(cornerRadius: 5).fill(colorScheme == .dark ? Color.black : Color.white))
+                        .background(
+                            RoundedRectangle(cornerRadius: 5).fill(colorScheme == .dark ? Color.black : Color.white)
+                        )
                 }
+                
                 HStack {
-                    Text("End: ").foregroundColor(.white).font(Font.custom("DIN", size: 25))
+                    Text("End: ")
+                        .foregroundColor(.white)
+                        .font(Font.custom("DIN", size: 25))
                     DatePicker("", selection: $end, displayedComponents: [.date])
                         .labelsHidden()
                         .accentColor(Color.black)
-                        .background(RoundedRectangle(cornerRadius: 5).fill(colorScheme == .dark ? Color.black : Color.white))
+                        .background(
+                            RoundedRectangle(cornerRadius: 5).fill(colorScheme == .dark ? Color.black : Color.white)
+                        )
                         .padding(.leading, 10)
                 }
-            }.padding().opacity(index == 3 ? 1 : 0).offset(y: CGFloat(index == 3 ? 0 : 75)).animation(.easeInOut(duration: 1), value: index)
+            }
+            .padding()
+            .opacity(index == 3 ? 1 : 0)
+            .offset(y: CGFloat(index == 3 ? 0 : 75))
+            .animation(.easeInOut(duration: 1), value: index)
         }
     }
 }

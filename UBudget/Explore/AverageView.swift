@@ -29,14 +29,21 @@ struct AverageView: View {
     
     var body: some View {
         ZStack (alignment: .leading) {
-            RoundedRectangle(cornerRadius: 10).fill(Color.black).overlay(
-                RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: colorScheme == .dark ? 1 : 0)
-            )
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: colorScheme == .dark ? 1 : 0)
+                )
             
             VStack (alignment: .leading, spacing: -5) {
-                Text("Average Weekly Spend:").font(Font.custom("DIN", size: 15)).foregroundColor(.white)
-                Text(currencySymbol + String(format: "%.2f", weeklyAverage)).font(Font.custom("DIN", size: 40)).minimumScaleFactor(0.5).lineLimit(1).foregroundColor(.white)
-            }.padding([.leading, .trailing], 10).padding([.top, .bottom], 5)
+                Text("Average Weekly Spend:").font(Font.custom("DIN", size: 15))
+                    .foregroundColor(.white)
+                Text(currencySymbol + String(format: "%.2f", weeklyAverage))
+                    .font(Font.custom("DIN", size: 40))
+                    .minimumScaleFactor(0.5).lineLimit(1).foregroundColor(.white)
+            }
+            .padding([.leading, .trailing], 10)
+            .padding([.top, .bottom], 5)
         }
     }
 }

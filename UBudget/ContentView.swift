@@ -24,7 +24,9 @@ struct ContentView: View {
     var total: Double {
         UserDefaults(suiteName: "group.com.my.app.unibudgeter")?.double(forKey: "total") ?? 0.0
     }
+    
     @AppStorage("applyRollover") var rolloverChoice: Bool = false
+    
     var start: Date {
         return Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "startDate"))
     }
@@ -50,6 +52,7 @@ struct ContentView: View {
             return []
         }
     }
+    
     var deductibles: [DeductibleStruct] {
         if let data = UserDefaults.standard.value(forKey: "deductibles") as? Data {
             let returnValue = (try? PropertyListDecoder().decode(Array<DeductibleStruct>.self, from: data))!
@@ -192,7 +195,8 @@ struct ContentView: View {
     
     var body: some View {
         if didLaunchBefore {
-            Onboarding().edgesIgnoringSafeArea(.bottom)
+            Onboarding()
+                .edgesIgnoringSafeArea(.bottom)
         }
         else if showingSettings {
             SettingsView(showingSettings: $showingSettings, notOnBudget: notOnBudget, deductibleCollection: deductibles, startDate: start, endDate: end, needsUpdating: $needsUpdating, checkStart: start, checkEnd: end, checkNotOnBudget: notOnBudget)

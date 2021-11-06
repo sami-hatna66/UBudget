@@ -29,7 +29,8 @@ struct SixthTab: View {
                 Backdrop()
             }
             else {
-                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93).fill(Color.black)
+                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93)
+                    .fill(Color.black)
                     .frame(height: UIScreen.main.bounds.height)
             }
             
@@ -37,6 +38,7 @@ struct SixthTab: View {
             ZStack {
                 VStack {
                     AnimateTick(height: 150, width: 150, index: $index).padding(.bottom, 30)
+                    
                     Button(action: {
                         UserDefaults.standard.set(false, forKey: "didLaunchBefore")
                         userDefaults.set(Double(totalAmount), forKey: "total")
@@ -60,14 +62,25 @@ struct SixthTab: View {
                         UserDefaults.standard.set(try? PropertyListEncoder().encode(saveDeductibleArray), forKey: "deductibles")
                     }) {
                         ZStack (alignment: .center) {
-                            RoundedRectangle(cornerRadius: 30).fill(Color.white).frame(width: 250, height: 50)
-                            Text("Start Budgeting").foregroundColor(.black).font(Font.custom("DIN", size: 30)).multilineTextAlignment(.center)
+                            RoundedRectangle(cornerRadius: 30)
+                                .fill(Color.white)
+                                .frame(width: 250, height: 50)
+                            Text("Start Budgeting")
+                                .foregroundColor(.black)
+                                .font(Font.custom("DIN", size: 30))
+                                .multilineTextAlignment(.center)
                         }
                     }.opacity(textOpacity).offset(y: CGFloat(yOffset))
                 }.opacity(isError ? 0 : 1)
+                
                 VStack {
                     AnimateCross(height: 150, width: 150, index: $index).padding(.bottom, 30)
-                    Text("There was an error processing some of the data you inputted").opacity(textOpacity).offset(y: CGFloat(yOffset)).foregroundColor(.white).font(Font.custom("DIN", size: 30)).multilineTextAlignment(.center)
+                    Text("There was an error processing some of the data you inputted")
+                        .opacity(textOpacity)
+                        .offset(y: CGFloat(yOffset))
+                        .foregroundColor(.white)
+                        .font(Font.custom("DIN", size: 30))
+                        .multilineTextAlignment(.center)
                 }.padding().opacity(isError ? 1 : 0)
             }
             .onChange(of: index, perform: { _ in

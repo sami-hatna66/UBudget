@@ -20,7 +20,8 @@ struct ArticleCarousel: View {
         GeometryReader { geometry in
             HStack {
                 ForEach(Array(zip(viewModel.articles.indices, viewModel.articles)), id: \.0) { index, article in
-                    ArticleWidget(article: article, index: index, swipeIndex: $swipeIndex).shadow(radius: index == swipeIndex ? 5:0)
+                    ArticleWidget(article: article, index: index, swipeIndex: $swipeIndex)
+                        .shadow(radius: index == swipeIndex ? 5:0)
                         .onTapGesture {
                             if index == swipeIndex {
                                 openArticle = article

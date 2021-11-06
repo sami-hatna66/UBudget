@@ -21,9 +21,19 @@ struct FirstTab: View {
             }
             
             VStack (alignment: .center) {
-                Text("Hello there!").foregroundColor(.white).font(Font.custom("DIN Bold", size: 60))
-                Text("Before you start budgeting with UBudget, we'd like to gather some information about your budgeting needs").foregroundColor(.white).font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center)
-            }.padding().opacity(index == 0 ? 1 : 0).offset(y: CGFloat(index == 0 ? 0 : 75)).animation(.easeInOut(duration: 1), value: index)
+                Text("Hello there!")
+                    .foregroundColor(.white)
+                    .font(Font.custom("DIN Bold", size: 60))
+                
+                Text("Before you start budgeting with UBudget, we'd like to gather some information about your budgeting needs")
+                    .foregroundColor(.white)
+                    .font(Font.custom("DIN", size: 20))
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
+            .opacity(index == 0 ? 1 : 0)
+            .offset(y: CGFloat(index == 0 ? 0 : 75))
+            .animation(.easeInOut(duration: 1), value: index)
         }
     }
 }

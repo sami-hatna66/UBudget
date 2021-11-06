@@ -25,24 +25,44 @@ struct SecondTab: View {
                 Backdrop()
             }
             else {
-                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93).fill(Color.black)
+                Wave(amplitude: 5, frequency: 10, phase: 0.0, percent: 0.93)
+                    .fill(Color.black)
                     .frame(height: UIScreen.main.bounds.height)
             }
             
             VStack {
-                Text("Could you tell us how much money you've set aside for this budgeting period").foregroundColor(.white).font(Font.custom("DIN", size: 25)).multilineTextAlignment(.center)
+                Text("Could you tell us how much money you've set aside for this budgeting period")
+                    .foregroundColor(.white)
+                    .font(Font.custom("DIN", size: 25))
+                    .multilineTextAlignment(.center)
                 ZStack {
-                    RoundedRectangle(cornerRadius: 15.0).foregroundColor(.white).frame(width: 330, height: 35)
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .foregroundColor(.white)
+                        .frame(width: 330, height: 35)
                     HStack (spacing: 1) {
-                        Text(currencySymbol).foregroundColor(.black).font(Font.custom("DIN", size: 20)).font(Font.custom("DIN", size: 20))
-                        TextField("", text: $textFieldValue).foregroundColor(.black).accentColor(.black).background(Color.white).frame(width: 300 - currencySymbol.widthOfString(usingFont: UIFont(name: "DIN", size: 20)!)).keyboardType(.decimalPad).font(Font.custom("DIN", size: 20))
+                        Text(currencySymbol)
+                            .foregroundColor(.black)
+                            .font(Font.custom("DIN", size: 20))
+                            .font(Font.custom("DIN", size: 20))
+                        TextField("", text: $textFieldValue)
+                            .foregroundColor(.black)
+                            .accentColor(.black)
+                            .background(Color.white)
+                            .frame(width: 300 - currencySymbol.widthOfString(usingFont: UIFont(name: "DIN", size: 20)!))
+                            .keyboardType(.decimalPad).font(Font.custom("DIN", size: 20))
                     }
                 }
-            }.padding().opacity(index == 1 ? 1 : 0).offset(y: CGFloat(index == 1 ? 0 : 75)).animation(.easeInOut(duration: 1), value: index)
+            }
+            .padding()
+            .opacity(index == 1 ? 1 : 0)
+            .offset(y: CGFloat(index == 1 ? 0 : 75))
+            .animation(.easeInOut(duration: 1), value: index)
 
         }
         .onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            UIApplication.shared.sendAction(
+                #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
+            )
         }
     }
 }

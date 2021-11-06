@@ -28,12 +28,18 @@ struct AddExpense: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15.0).foregroundColor(colorScheme == .dark ? .white : .black).overlay(
+            RoundedRectangle(cornerRadius: 15.0)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
+                .overlay(
                 VStack {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 15.0).foregroundColor(colorScheme == .dark ? .black : .white).frame(width: 300, height: 35)
+                        RoundedRectangle(cornerRadius: 15.0)
+                            .foregroundColor(colorScheme == .dark ? .black : .white)
+                            .frame(width: 300, height: 35)
+                        
                         HStack (spacing: 1) {
-                            Text(isExpense ? "– " + currencySymbol : "+ " + currencySymbol).font(Font.custom("DIN", size: 20))
+                            Text(isExpense ? "– " + currencySymbol : "+ " + currencySymbol)
+                                .font(Font.custom("DIN", size: 20))
                             TextField("", text: $expenseAmount)
                                 .background(colorScheme == .dark ? Color.black : Color.white)
                                 .frame(width: 260 - currencySymbol.widthOfString(usingFont: UIFont(name: "DIN", size: 20)!))
@@ -60,19 +66,27 @@ struct AddExpense: View {
                             UserDefaults(suiteName: "group.com.my.app.unibudgeter")?.set(yearTotal, forKey: "total")
                         }
                         
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        UIApplication.shared.sendAction(
+                            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
+                        )
                         expenseAmount = ""
                         withAnimation(.linear(duration: 0.3)) {
                             overlayOpacity = 0.0
                             blurRadius = 0
                         }
                     }) {
-                        RoundedRectangle(cornerRadius: 30.0).stroke(colorScheme == .dark ? Color.black : Color.white, lineWidth: 1.0).overlay(
-                            Text(isExpense ? "Add Expense" : "Add Extra Money").foregroundColor(colorScheme == .dark ? .black : .white).font(Font.custom("DIN", size: 20))
+                        RoundedRectangle(cornerRadius: 30.0)
+                            .stroke(colorScheme == .dark ? Color.black : Color.white, lineWidth: 1.0)
+                            .overlay(
+                                Text(isExpense ? "Add Expense" : "Add Extra Money")
+                                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                                    .font(Font.custom("DIN", size: 20)
+                            )
                         ).frame(width: isExpense ? 150 : 180, height: 30)
                     }
                 }
             ).frame(width: UIScreen.main.bounds.width - 50, height: 120)
+            
             RoundedRectangle(cornerRadius: 15.0).stroke(colorScheme == .dark ? Color.black : Color.white, lineWidth: 1).frame(width: UIScreen.main.bounds.width - 50, height: 120)
         }
     }

@@ -21,13 +21,19 @@ struct RemaningView: View {
     
     var body: some View {
         ZStack (alignment: .leading) {
-            RoundedRectangle(cornerRadius: 10).fill(Color.black).overlay(
-                RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: colorScheme == .dark ? 1 : 0)
-            )
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: colorScheme == .dark ? 1 : 0)
+                )
             
             VStack (alignment: .leading, spacing: -5) {
-                Text("Remaining Budget:").font(Font.custom("DIN", size: 15)).foregroundColor(.white)
-                Text(currencySymbol + String(format: "%.2f", total)).font(Font.custom("DIN", size: 40)).lineLimit(1).foregroundColor(.white)
+                Text("Remaining Budget:")
+                    .font(Font.custom("DIN", size: 15))
+                    .foregroundColor(.white)
+                Text(currencySymbol + String(format: "%.2f", total))
+                    .font(Font.custom("DIN", size: 40))
+                    .lineLimit(1).foregroundColor(.white)
             }.padding([.leading, .trailing], 10).padding([.top, .bottom], 5)
         }
     }

@@ -5,8 +5,6 @@
 //  Created by Sami Hatna on 27/07/2021.
 //
 
-//Userdefaults: year total, budget rollovers, start, end, not on budget periods,
-
 import SwiftUI
 
 struct Onboarding: View {

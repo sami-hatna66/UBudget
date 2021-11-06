@@ -13,7 +13,8 @@ struct Backdrop: View {
     
     var body: some View {
         ZStack (alignment: .center) {
-            Wave(amplitude: 5, frequency: 10, phase: phase, percent: 0.93).fill(Color.black)
+            Wave(amplitude: 5, frequency: 10, phase: phase, percent: 0.93)
+                .fill(Color.black)
                 .frame(height: UIScreen.main.bounds.height)
                 .onAppear {
                     withAnimation(Animation.linear(duration: 3).repeatForever(autoreverses: false)) {
@@ -25,7 +26,9 @@ struct Backdrop: View {
                         self.phase = -.pi * 2
                     }
                 }
-            Wave(amplitude: 5, frequency: 10, phase: phase2, percent: 0.93).fill(Color.black).opacity(0.5)
+            Wave(amplitude: 5, frequency: 10, phase: phase2, percent: 0.93)
+                .fill(Color.black)
+                .opacity(0.5)
                 .frame(height: UIScreen.main.bounds.height)
                 .onAppear {
                     withAnimation(Animation.linear(duration: 3).repeatForever(autoreverses: false)) {
@@ -36,8 +39,3 @@ struct Backdrop: View {
     }
 }
 
-struct Backdrop_Previews: PreviewProvider {
-    static var previews: some View {
-        Backdrop()
-    }
-}

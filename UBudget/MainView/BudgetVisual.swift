@@ -34,6 +34,7 @@ struct BudgetVisual: View {
     @State var phase = 0.0
     @State var phase2 = 0.0
     @State var waveHeight = CGFloat(300)
+    
     var formatter: NumberFormatter {
         let f  = NumberFormatter()
         f.usesSignificantDigits = true
@@ -44,7 +45,8 @@ struct BudgetVisual: View {
     
     var body: some View {
             ZStack (alignment: .center) {
-                Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent).frame(height: waveHeight)
+                Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent)
+                    .frame(height: waveHeight)
                     .clipShape(Circle())
                     .overlay(Circle().stroke())
                     .onAppear {
@@ -53,7 +55,8 @@ struct BudgetVisual: View {
                         }
                     }
                 
-                Wave(amplitude: 5, frequency: 10, phase: phase2, percent: percent).fill(colorScheme == .dark ? Color.white : Color.black).opacity(0.5)
+                Wave(amplitude: 5, frequency: 10, phase: phase2, percent: percent)
+                    .fill(colorScheme == .dark ? Color.white : Color.black).opacity(0.5)
                     .frame(height: waveHeight)
                     .clipShape(Circle())
                     .onAppear {
@@ -62,25 +65,39 @@ struct BudgetVisual: View {
                         }
                     }
                 
-                Text(currencySymbol + String(format: "%.2f", weekTotal[1])).foregroundColor(colorScheme == .dark ? Color.white : Color.black).font(Font.custom("DIN", size: 70)).frame(width: 280).minimumScaleFactor(0.5).lineLimit(1)
+                Text(currencySymbol + String(format: "%.2f", weekTotal[1]))
+                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                    .font(Font.custom("DIN", size: 70))
+                    .frame(width: 280)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
                 
-                Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent).fill(colorScheme == .dark ? Color.black : Color.white)
+                Wave(amplitude: 5, frequency: 10, phase: phase, percent: percent)
+                    .fill(colorScheme == .dark ? Color.black : Color.white)
                     .frame(height: waveHeight)
                     .clipShape(Circle())
                     .onAppear {
                         withAnimation(Animation.linear(duration: 3).repeatForever(autoreverses: false)) {
                             self.phase = -.pi * 2
                         }
-                    }.mask(Text(currencySymbol + String(format: "%.2f", weekTotal[1])).foregroundColor(colorScheme == .dark ? Color.white : Color.black).font(Font.custom("DIN", size: 70))).frame(width: 280).minimumScaleFactor(0.5).lineLimit(1)
+                    }.mask(Text(currencySymbol + String(format: "%.2f", weekTotal[1]))
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .font(Font.custom("DIN", size: 70)))
+                    .frame(width: 280)
+                    .minimumScaleFactor(0.5).lineLimit(1)
                 
                 GeometryReader { g in
                     VStack (alignment: .leading) {
                         ForEach(deductibleList.indices, id: \.self) { index in
-                            Text(deductibleList[index]).foregroundColor(.red).font(Font.custom("DIN", size: 15))
+                            Text(deductibleList[index])
+                                .foregroundColor(.red)
+                                .font(Font.custom("DIN", size: 15))
                         }
-                    }.offset(x: 10, y: UIScreen.main.bounds.height/15).opacity(textOpacity).onAppear {
-                        withAnimation(.easeIn(duration: 0.5)) {
-                            textOpacity = 1
+                    }.offset(x: 10, y: UIScreen.main.bounds.height/15)
+                        .opacity(textOpacity)
+                        .onAppear {
+                            withAnimation(.easeIn(duration: 0.5)) {
+                                textOpacity = 1
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             withAnimation(.easeIn(duration: 0.5)) {
@@ -96,17 +113,3 @@ struct BudgetVisual: View {
         }
     }
 }
-
-
-
-
-
-
-//            Button(action: {
-//                notOnBudget.append(DateStruct(start: Date(), end: Date(), active: true))
-//                UserDefaults.standard.set(try? PropertyListEncoder().encode(notOnBudget), forKey: "notOnBudget")
-//                print(notOnBudget)
-//            }) {
-//                Text("Update")
-//            }
-

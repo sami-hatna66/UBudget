@@ -18,16 +18,28 @@ struct DeductibleWidget: View {
     
     var body: some View {
         HStack {
-            Text(deductibleCollection[index].name).lineLimit(1).foregroundColor(.white)
+            Text(deductibleCollection[index].name)
+                .lineLimit(1)
+                .foregroundColor(.white)
+            
             Spacer()
-            Text(currencySymbol + String(format: "%.2f", deductibleCollection[index].amount)).foregroundColor(.white)
+            
+            Text(currencySymbol + String(format: "%.2f", deductibleCollection[index].amount))
+                .foregroundColor(.white)
                 .padding(.trailing, 10)
-            Text(deductibleCollection[index].interval).foregroundColor(.white).padding(.trailing, 10)
+            
+            Text(deductibleCollection[index].interval)
+                .foregroundColor(.white)
+                .padding(.trailing, 10)
+            
             Button(action: {
                 deductibleCollection[index].active = false
             }) {
-                Image(systemName: "trash.fill").foregroundColor(.white)
+                Image(systemName: "trash.fill")
+                    .foregroundColor(.white)
             }
-        }.frame(maxWidth: .infinity).padding(.leading, 10).padding(.trailing, 10).padding(.top, 5).padding(.bottom, 5)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.leading, 10).padding(.trailing, 10).padding(.top, 5).padding(.bottom, 5)
     }
 }

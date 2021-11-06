@@ -123,7 +123,12 @@ struct LikeDislikeWidget: View {
                 }
             }
         }
-        .foregroundColor(colorScheme == .dark ? .black : .white).padding(.leading, 10).padding(.trailing, 10).padding(.top, 3).padding(.bottom, 3).background(RoundedRectangle(cornerRadius: CGFloat(40)).foregroundColor(colorScheme == .dark ? Color.white : Color.black))
+        .foregroundColor(colorScheme == .dark ? .black : .white)
+        .padding(.leading, 10).padding(.trailing, 10)
+        .padding(.top, 3).padding(.bottom, 3)
+        .background(
+            RoundedRectangle(cornerRadius: CGFloat(40)).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+        )
     }
 }
 

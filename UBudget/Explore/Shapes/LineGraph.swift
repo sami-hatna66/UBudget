@@ -25,7 +25,10 @@ struct Graph: Shape {
             let amount = inputData[index].spent
             
             if index == 0 {
-                path.move(to: CGPoint(x: (rect.width/CGFloat(inputData.count-1)) * CGFloat(index), y: rect.height - (CGFloat(amount * Double(multiplier)))))
+                path.move(to: CGPoint(
+                                    x: (rect.width/CGFloat(inputData.count-1)) * CGFloat(index),
+                                    y: rect.height - (CGFloat(amount * Double(multiplier)))
+                            ))
             }
             else {
                 let x = (rect.width/CGFloat(inputData.count-1)) * CGFloat(index)

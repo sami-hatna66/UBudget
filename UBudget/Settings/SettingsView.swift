@@ -32,28 +32,41 @@ struct SettingsView: View {
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.3)) { showingSettings.toggle() }
                 }) {
-                    Image(systemName: "xmark.circle").resizable().frame(width: 20, height: 20).foregroundColor(colorScheme == .dark ? .white : .black)
+                    Image(systemName: "xmark.circle")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                 }.padding(.trailing, 10)
             }
             
             Text("Settings").font(Font.custom("DIN", size: 40)).padding(.bottom, 15)
             
             HStack {
-                Text("Change Start and End Dates").font(Font.custom("DIN", size: 20)).padding(.leading, 15).padding(.bottom, -4)
+                Text("Change Start and End Dates")
+                    .font(Font.custom("DIN", size: 20))
+                    .padding(.leading, 15).padding(.bottom, -4)
                 Spacer()
             }
+            
             StartEndWidget(startDate: $startDate, endDate: $endDate).padding(.bottom, 20)
 
             HStack {
-                Text("Edit Off-Budget Dates").font(Font.custom("DIN", size: 20)).padding(.leading, 15).padding(.bottom, -4)
+                Text("Edit Off-Budget Dates")
+                    .font(Font.custom("DIN", size: 20))
+                    .padding(.leading, 15).padding(.bottom, -4)
                 Spacer()
             }
-            VancancyView(dateCollection: $notOnBudget, isOnboarding: false).padding(.trailing, 4).padding(.bottom, 20)
+            
+            VancancyView(dateCollection: $notOnBudget, isOnboarding: false)
+                .padding(.trailing, 4).padding(.bottom, 20)
             
             HStack {
-                Text("Edit Recurring Payments").font(Font.custom("DIN", size: 20)).padding(.leading, 15).padding(.bottom, -4)
+                Text("Edit Recurring Payments")
+                    .font(Font.custom("DIN", size: 20))
+                    .padding(.leading, 15).padding(.bottom, -4)
                 Spacer()
             }
+            
             DeductiblesView(deductibleCollection: $deductibleCollection, showingSheet: $showingSheet, isOnboarding: false)
             
             Button(action: {

@@ -24,15 +24,19 @@ struct periodOverView: View {
             VStack {
                 Spacer()
                 
-                Text("Congratulations!").foregroundColor(.white).font(Font.custom("DIN Bold", size: 40)).padding(.bottom, 5)
-                Text("You have reached the end of your budgeting period").foregroundColor(.white).font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center).padding(.bottom, 10)
+                Text("Congratulations!")
+                    .foregroundColor(.white).font(Font.custom("DIN Bold", size: 40)).padding(.bottom, 5)
+                Text("You have reached the end of your budgeting period")
+                    .foregroundColor(.white).font(Font.custom("DIN", size: 20))
+                    .multilineTextAlignment(.center).padding(.bottom, 10)
                 
                 Button(action: {
                     UserDefaults.standard.set(true, forKey: "didLaunchBefore")
                 }) {
                     ZStack (alignment: .center) {
                         RoundedRectangle(cornerRadius: 30).fill(Color.white).frame(width: 200, height: 40)
-                        Text("Start a new budget").foregroundColor(.black).font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center)
+                        Text("Start a new budget").foregroundColor(.black)
+                            .font(Font.custom("DIN", size: 20)).multilineTextAlignment(.center)
                     }
                 }
                 

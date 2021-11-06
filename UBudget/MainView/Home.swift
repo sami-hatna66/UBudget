@@ -30,15 +30,6 @@ struct Home: View {
     
     @Binding var showGuideOverlay: Bool
     
-    var hasNotch: Bool {
-            guard #available(iOS 11.0, *), let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return false }
-            if UIDevice.current.orientation.isPortrait {
-                return window.safeAreaInsets.top >= 44
-            } else {
-                return window.safeAreaInsets.left > 0 || window.safeAreaInsets.right > 0
-            }
-        }
-    
     var body: some View {
         ZStack (alignment: .center) {
             
@@ -62,8 +53,12 @@ struct Home: View {
                         }
                     }) {
                         ZStack {
-                            Circle().fill(colorScheme == .dark ? Color.white : Color.black).frame(width: 50, height: 50)
-                            Image("addmoneyicon").resizable().frame(width: 30, height: 30)
+                            Circle()
+                                .fill(colorScheme == .dark ? Color.white : Color.black)
+                                .frame(width: 50, height: 50)
+                            Image("addmoneyicon")
+                                .resizable()
+                                .frame(width: 30, height: 30)
                         }
                     }.padding(.bottom, 5)
                     
@@ -77,8 +72,12 @@ struct Home: View {
                         }
                     }) {
                         ZStack {
-                            Circle().fill(colorScheme == .dark ? Color.white : Color.black).frame(width: 70, height: 70)
-                            Image("addexpenseicon").resizable().frame(width: 40, height: 40)
+                            Circle()
+                                .fill(colorScheme == .dark ? Color.white : Color.black)
+                                .frame(width: 70, height: 70)
+                            Image("addexpenseicon")
+                                .resizable()
+                                .frame(width: 40, height: 40)
                         }
                     }.padding(.bottom, 5)
                     
@@ -88,8 +87,13 @@ struct Home: View {
                         showingGuide = true
                     }) {
                         ZStack {
-                            Circle().fill(colorScheme == .dark ? Color.white : Color.black).frame(width: 50, height: 50)
-                            Image("guideicon").resizable().frame(width: 13, height: 22).foregroundColor(.white)
+                            Circle()
+                                .fill(colorScheme == .dark ? Color.white : Color.black)
+                                .frame(width: 50, height: 50)
+                            Image("guideicon")
+                                .resizable()
+                                .frame(width: 13, height: 22)
+                                .foregroundColor(.white)
                         }
                     }.padding(.bottom, 5)
                     .overlay(GuideOverlay().offset(x: -20, y: -65).opacity(showGuideOverlay ? 1 : 0))
@@ -104,11 +108,9 @@ struct Home: View {
                     
                     Spacer()
                 }
-                
-                
-                
             }.blur(radius: CGFloat(blurRadius))
-            .contentShape(Rectangle()).onTapGesture {
+            .contentShape(Rectangle())
+            .onTapGesture {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 withAnimation(.linear(duration: 0.3)) {
                     overlayOpacity = 0.0
@@ -121,19 +123,11 @@ struct Home: View {
                 print(weeklyBudget)
             }
             
-            AddExpense(weeklyBudget: $weeklyBudget, yearTotal: $yearTotal, overlayOpacity: $overlayOpacity, blurRadius: $blurRadius, isExpense: $isExpense).opacity(overlayOpacity).frame(height: 160)
+            AddExpense(weeklyBudget: $weeklyBudget, yearTotal: $yearTotal, overlayOpacity: $overlayOpacity, blurRadius: $blurRadius, isExpense: $isExpense)
+                .opacity(overlayOpacity)
+                .frame(height: 160)
         }
     }
 }
 
-extension UIDevice {
-    var hasNotch: Bool {
-        if #available(iOS 11.0, *) {
-            let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-            return keyWindow?.safeAreaInsets.bottom ?? 0 > 0
-        }
-        return false
-    }
-
-}
 

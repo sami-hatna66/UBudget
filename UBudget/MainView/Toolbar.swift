@@ -18,7 +18,10 @@ struct Toolbar: View {
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.3)) { showingExplore.toggle() }
             }) {
-                Image(systemName: "chart.pie.fill").resizable().frame(width: 20, height: 20).foregroundColor(colorScheme == .dark ? .white : .black)
+                Image(systemName: "chart.pie.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
             }
             
             Spacer()
@@ -30,7 +33,10 @@ struct Toolbar: View {
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.3)) { showingSettings.toggle() }
             }) {
-                Image(systemName: "gearshape.fill").resizable().frame(width: 20, height: 20).foregroundColor(colorScheme == .dark ? .white : .black)
+                Image(systemName: "gearshape.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
             }
         }.padding(.leading, 10).padding(.trailing, 10)
     }
