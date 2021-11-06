@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="screenshots/GithubHeader.png?raw=true" alt="BookTracker" width=500/>
+  <img src="Screenshots/GithubHeader.png?raw=true" alt="UBudget" width=700/>
 </p>
 
 #  UBudget
