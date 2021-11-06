@@ -39,6 +39,7 @@ struct ThirdTab: View {
                 .offset(y: CGFloat(index == 2 ? 0 : 75))
                 .animation(.easeInOut(duration: 1), value: index)
                 
+                // Show info view
                 Button(action: {
                     withAnimation(.linear(duration: 0.5)) {
                         infoOpacity = 1

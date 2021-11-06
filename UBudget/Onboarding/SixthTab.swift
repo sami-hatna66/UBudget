@@ -40,6 +40,7 @@ struct SixthTab: View {
                     AnimateTick(height: 150, width: 150, index: $index).padding(.bottom, 30)
                     
                     Button(action: {
+                        // Save inputted data to userdefaults
                         UserDefaults.standard.set(false, forKey: "didLaunchBefore")
                         userDefaults.set(Double(totalAmount), forKey: "total")
                         userDefaults.set(Double(totalAmount), forKey: "totalOverall")
@@ -52,6 +53,7 @@ struct SixthTab: View {
                                 saveDateArray.append(date)
                             }
                         }
+                        // Custom structs can't be saved to userdefaults as is, so must be encoded
                         UserDefaults.standard.set(try? PropertyListEncoder().encode(saveDateArray), forKey: "notOnBudget")
                         var saveDeductibleArray: [DeductibleStruct] = []
                         deductibleCollection.forEach { deductible in
@@ -73,6 +75,7 @@ struct SixthTab: View {
                     }.opacity(textOpacity).offset(y: CGFloat(yOffset))
                 }.opacity(isError ? 0 : 1)
                 
+                // If there is an issue with inputted data, don't let user proceed
                 VStack {
                     AnimateCross(height: 150, width: 150, index: $index).padding(.bottom, 30)
                     Text("There was an error processing some of the data you inputted")
@@ -84,6 +87,7 @@ struct SixthTab: View {
                 }.padding().opacity(isError ? 1 : 0)
             }
             .onChange(of: index, perform: { _ in
+                // Error checking
                 if index == 5 {
                     var check = true
                     for n in 0..<dateCollection.count {

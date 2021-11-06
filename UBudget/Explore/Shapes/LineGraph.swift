@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// Graph shape - takes input data of type SaveData and plots a fully scaleable line chart
 struct Graph: Shape {
     var inputData: [SaveData]
     
@@ -18,12 +19,14 @@ struct Graph: Shape {
         
         path.move(to: CGPoint(x: rect.minX, y: rect.minY))
         
+        // scale values to frame of shape
         let multiplier = rect.height / (inputData.map { CGFloat($0.spent) }.max() ?? 1)
         
         for index in 0 ..< inputData.count {
             
             let amount = inputData[index].spent
             
+            // plot values 
             if index == 0 {
                 path.move(to: CGPoint(
                                     x: (rect.width/CGFloat(inputData.count-1)) * CGFloat(index),

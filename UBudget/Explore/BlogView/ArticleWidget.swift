@@ -18,6 +18,7 @@ struct ArticleWidget: View {
     var body: some View {
         VStack(alignment: .leading) {
             Group {
+                // Alter image dependent on light or dark mode
                 if colorScheme == .light {
                     article.lightImage
                         .resizable().scaledToFill().frame(width: 250, height: 150).clipped()
@@ -26,6 +27,7 @@ struct ArticleWidget: View {
                     article.darkImage
                         .resizable().scaledToFill().frame(width: 250, height: 150).clipped()
                 }
+                
                 Text(article.title).frame(width: 240, alignment: .leading)
                     .font(.system(size: 15, weight: .medium)).lineLimit(1)
                     .padding(.leading, 5).padding(.trailing, 5).padding(.bottom, -7)

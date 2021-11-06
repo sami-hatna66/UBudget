@@ -33,6 +33,7 @@ struct FirstTab: View {
             .padding()
             .opacity(index == 0 ? 1 : 0)
             .offset(y: CGFloat(index == 0 ? 0 : 75))
+            // Animations are triggered by changes in index
             .animation(.easeInOut(duration: 1), value: index)
         }
     }

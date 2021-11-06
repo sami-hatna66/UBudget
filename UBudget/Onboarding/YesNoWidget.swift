@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View not actually used in final project
 struct YesNoWidget: View {
     @Binding var rolloverChoice: Bool
     @State var yOffset = -5

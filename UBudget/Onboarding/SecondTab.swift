@@ -60,6 +60,7 @@ struct SecondTab: View {
 
         }
         .onTapGesture {
+            // Dismiss keyboard
             UIApplication.shared.sendAction(
                 #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
             )

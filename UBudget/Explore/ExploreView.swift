@@ -11,7 +11,10 @@ import SDWebImageSwiftUI
 struct ExploreView: View {
     @State var isArticleOpened = false
     @State var swipeIndex = 0
+    // Empty instance of Article - only needed for initialisation
+    // When article is opened, the attributes for this object will be changed to those of that article
     @State var openArticle = Article(dbRef: "", tag: 1, title: "", body: "", likes: 0, dislikes: 0, lightImageName: "", lightImage: WebImage(url: URL(string: "")), darkImageName: "", darkImage: WebImage(url: URL(string: "")))
+    // For carousel
     @State var snapOffset = (UIScreen.main.bounds.width / 2) - 125
     @State var first = true
     
@@ -19,6 +22,7 @@ struct ExploreView: View {
     @Binding var showingExplore: Bool
     
     var body: some View {
+        // View will either display explore tab or current article
         if isArticleOpened {
             OpenArticle(article: openArticle, isArticleOpened: $isArticleOpened, snapOffset: $snapOffset)
         }
@@ -44,7 +48,6 @@ struct ExploreView: View {
                 Text("Blog").font(Font.custom("DIN", size: 30))
                 
                 ArticleCarousel(snapOffset: $snapOffset, swipeIndex: $swipeIndex, openArticle: $openArticle, isArticleOpened: $isArticleOpened).padding(.bottom, 250)
-
             }
         }
     }

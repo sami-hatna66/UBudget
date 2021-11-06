@@ -109,6 +109,7 @@ struct LikeDislikeWidget: View {
                     defaults.set(dislikedArticles, forKey: "dislikedArticles")
                 }
             }.onAppear {
+                // Check if user has already liked/disliked this particular article
                 let defaults = UserDefaults.standard
                 let likedArticles: [String] = defaults.object(forKey: "likedArticles") as? [String] ?? []
                 let dislikedArticles: [String] = defaults.object(forKey: "dislikedArticles") as? [String] ?? []

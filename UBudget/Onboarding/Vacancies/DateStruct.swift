@@ -7,6 +7,7 @@
 
 import Foundation
 
+// active required for handling deleted vacancies
 struct DateStruct: Codable, Equatable {
     var start: Date
     var end: Date

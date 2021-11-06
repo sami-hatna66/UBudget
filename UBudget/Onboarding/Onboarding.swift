@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Onboarding screen guides the user through setting up their budgeting app
+// Variables are passed into tabs as bindings, then actually saved in the final tab
 struct Onboarding: View {
     @State var tabIndex = -1
     @State var totalAmount = "0"
@@ -32,6 +34,7 @@ struct Onboarding: View {
                     .tag(5)
             }).background(Color.white.edgesIgnoringSafeArea(.all))
             .onAppear {
+                // Iron out weird animation bug
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     tabIndex = 0
                 }

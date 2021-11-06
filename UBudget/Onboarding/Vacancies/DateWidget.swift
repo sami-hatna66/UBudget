@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Individual rows in VacancyView
 struct DateWidget: View {
     @Environment(\.colorScheme) var colorScheme
     

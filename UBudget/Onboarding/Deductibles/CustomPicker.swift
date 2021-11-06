@@ -11,6 +11,8 @@ struct CustomPicker: View {
     @Binding var options: [String]
     @Binding var choice: String
     
+    // Binding of UIKit DatePicker
+    // Provides more customisability than SwiftUI counterpart
     init(options: Binding<[String]>, choice: Binding<String>) {
             UISegmentedControl.appearance().selectedSegmentTintColor = .white
             UISegmentedControl.appearance().setTitleTextAttributes(

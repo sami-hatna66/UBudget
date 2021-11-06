@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// Displays a rotating carousel of article widgets
 struct ArticleCarousel: View {
+    // create viewModel instance
     @ObservedObject private var viewModel = ArticleViewModel()
     
     @Binding var snapOffset: CGFloat
@@ -19,14 +21,17 @@ struct ArticleCarousel: View {
     var body: some View {
         GeometryReader { geometry in
             HStack {
+                // Create widgets from articles retrieved by viewModel
                 ForEach(Array(zip(viewModel.articles.indices, viewModel.articles)), id: \.0) { index, article in
                     ArticleWidget(article: article, index: index, swipeIndex: $swipeIndex)
                         .shadow(radius: index == swipeIndex ? 5:0)
                         .onTapGesture {
+                            // Opening articles
                             if index == swipeIndex {
                                 openArticle = article
                                 withAnimation(.easeInOut(duration: 0.3)) { isArticleOpened.toggle() }
                             }
+                            // Jumping to article on carousel when tapped
                             else {
                                 if index > swipeIndex {
                                     withAnimation(.linear(duration: 0.1)) {
@@ -44,9 +49,11 @@ struct ArticleCarousel: View {
                         }
                 }
             }.offset(x: snapOffset).onAppear {
+                // Update viewModel when first appears
                 viewModel.fetchData()
             }
             .gesture(
+                // Swiping between articles
                 DragGesture()
                     .onEnded { gesture in
                         if gesture.translation.width < 0 {

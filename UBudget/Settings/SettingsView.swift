@@ -27,6 +27,7 @@ struct SettingsView: View {
     
     var body: some View {
         ScrollView (showsIndicators: false) {
+            // Close settings button
             HStack {
                 Spacer()
                 Button(action: {
@@ -48,6 +49,7 @@ struct SettingsView: View {
                 Spacer()
             }
             
+            // Pass values from userdefaults in as bindings
             StartEndWidget(startDate: $startDate, endDate: $endDate).padding(.bottom, 20)
 
             HStack {
@@ -70,25 +72,37 @@ struct SettingsView: View {
             DeductiblesView(deductibleCollection: $deductibleCollection, showingSheet: $showingSheet, isOnboarding: false)
             
             Button(action: {
+                // Save edited values to userdefaults - will be evaluated onAppear of Home.swift
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(notOnBudget), forKey: "notOnBudget")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(deductibleCollection), forKey: "deductibles")
                 UserDefaults.standard.set(startDate.timeIntervalSince1970, forKey: "startDate")
                 UserDefaults.standard.set(endDate.timeIntervalSince1970, forKey: "endDate")
+                // If start date, end date or notOnBudget dates change, the weekly budget needs to be recalculated, so flag is changed
                 if checkStart != startDate || checkEnd != endDate || notOnBudget != checkNotOnBudget {
                     needsUpdating = true
                 }
                 showingSettings = false
             }) {
-                Text("Save Changes").font(Font.custom("DIN", size: 25)).foregroundColor(Color.black)
+                Text("Save Changes")
+                    .font(Font.custom("DIN", size: 25)).foregroundColor(Color.black)
                     .padding([.leading, .trailing], 10).padding([.top, .bottom], 5)
                     .background(
                     RoundedRectangle(cornerRadius: 30).fill(Color.white).overlay(
                         RoundedRectangle(cornerRadius: 30).stroke(Color.black, lineWidth: 1)
                     )
                 )
-            }.padding(.top, 20).padding(.bottom, 10)
+            }.padding(.top, 20)
+            
+            Button(action: {
+                UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+            }) {
+                Text("Start a new budget")
+                    .font(Font.custom("DIN", size: 17))
+                    .foregroundColor(.red).underline()
+            }
         }
         .sheet(isPresented: $showingSheet) {
+            // Add deductible window implemented as a sheet
             AddDeductible(deductibleCollection: $deductibleCollection, showingSheet: $showingSheet)
         }
     }

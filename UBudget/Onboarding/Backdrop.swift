@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// General use backdrop view for displaying wave background used in onboarding
 struct Backdrop: View {
     @State var phase = 0.0
     @State var phase2 = 0.0

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View for inputting start and end date of budgeting period
 struct StartEndWidget: View {
     @Environment(\.colorScheme) var colorScheme
     

@@ -17,6 +17,7 @@ struct AverageView: View {
         return locale.currencySymbol!
     }
     
+    // Compute weekly average using previous week data
     var weeklyAverage: Double {
         var count = 0
         var total = 0.0

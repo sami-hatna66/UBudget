@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+// View the graph is displayed within, graph itself is implimented as a shape
 struct SpendGraph: View {
     @Environment(\.colorScheme) var colorScheme
     
+    // Dimensions need to be changed if instance is in PeriodOverView
     @State var isEndScreen: Bool
     
     @Binding var graphData: [SaveData]
@@ -19,6 +21,7 @@ struct SpendGraph: View {
     
     @State var highlightedPoint = -1
     
+    // Returns the index of epicArray corresponding with the region of the graph the user has tapped in
     func computeHighlight(location: CGFloat) -> Int {
         let leadingSide = (width / CGFloat(graphData.count-1))/2
         var epicArray: [Double] = []
@@ -61,6 +64,7 @@ struct SpendGraph: View {
     
     var body: some View {
         ZStack {
+            // Background
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.black)
                 .frame(
@@ -78,10 +82,12 @@ struct SpendGraph: View {
                     .font(Font.custom("DIN", size: 20)).padding(.bottom, -10)
                 
                 ZStack {
+                    // Note: Should change implementation so axis is just part of the graph shape, unfortunately swiftui doesn't let me use different colors in one shape so this implementation will have to do for now
                     Axis(inputData: graphData)
                         .stroke(Color.gray, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
                         .frame(width: width + 10, height: height + 15)
                     
+                    // Graph shape
                     Graph(inputData: graphData, highlightedPoint: $highlightedPoint)
                         .stroke(Color.white, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
                         .frame(width: width, height: height)
@@ -89,15 +95,19 @@ struct SpendGraph: View {
                         .gesture(
                             DragGesture(minimumDistance: 0, coordinateSpace: .local)
                                 .onEnded {
+                                    // On tap/drag, compute which point on the graph should be highlighted
                                     highlightedPoint = computeHighlight(location: $0.location.x)
                                 }
                         )
                     
+                    // Highlight point
                     Circle()
                         .fill(Color.white).frame(width: 10, height: 10)
                         .offset(x: xOffset, y: highlightedPoint >= 0 ? yOffset : 0)
+                        // Hide point at first
                         .opacity(highlightedPoint >= 0 ? 1 : 0)
                     
+                    // Text displaying highlighted point's value
                     Text(
                         highlightedPoint >= 0 ? "Week \(String(highlightedPoint + 1))\n\(currencySymbol)\(String(format: "%.2f", graphData[highlightedPoint].spent))" : "")
                         .foregroundColor(.black)
