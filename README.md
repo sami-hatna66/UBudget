@@ -6,4 +6,6 @@
 
 ---
 
-ssssss
+<p align="center">
+  <img src="Screenshots/DarkMode.png?raw=true" alt="Dark Mode" width=700/>
+</p>
