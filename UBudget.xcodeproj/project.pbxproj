@@ -43,7 +43,6 @@
 		269309C426E7DE100016D858 /* GuideOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269309C326E7DE100016D858 /* GuideOverlay.swift */; };
 		269D23D226B6EE280014523E /* DateStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D23D126B6EE280014523E /* DateStruct.swift */; };
 		269D23D626B6F28F0014523E /* SixthTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269D23D526B6F28F0014523E /* SixthTab.swift */; };
-		26ABC8512746F2B700298187 /* Dark Mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 26ABC8502746F2B700298187 /* Dark Mode.png */; };
 		26ABC8532746F2BE00298187 /* Onboarding.png in Resources */ = {isa = PBXBuildFile; fileRef = 26ABC8522746F2BE00298187 /* Onboarding.png */; };
 		26B538DE26EA0DA600EF99AE /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B538DD26EA0DA600EF99AE /* AverageView.swift */; };
 		26B637122726F354004FA504 /* periodOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B637112726F354004FA504 /* periodOverView.swift */; };
@@ -142,7 +141,6 @@
 		269309C326E7DE100016D858 /* GuideOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideOverlay.swift; sourceTree = "<group>"; };
 		269D23D126B6EE280014523E /* DateStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStruct.swift; sourceTree = "<group>"; };
 		269D23D526B6F28F0014523E /* SixthTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixthTab.swift; sourceTree = "<group>"; };
-		26ABC8502746F2B700298187 /* Dark Mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark Mode.png"; sourceTree = "<group>"; };
 		26ABC8522746F2BE00298187 /* Onboarding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Onboarding.png; sourceTree = "<group>"; };
 		26B538DD26EA0DA600EF99AE /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
 		26B637112726F354004FA504 /* periodOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = periodOverView.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 		264093222736E9E500F6849F /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				26ABC8502746F2B700298187 /* Dark Mode.png */,
 				26ABC8522746F2BE00298187 /* Onboarding.png */,
 				2650EC0C273811760041EDAA /* GithubHeader.png */,
 			);
@@ -534,7 +531,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26ABC8512746F2B700298187 /* Dark Mode.png in Resources */,
 				26D2D92826B050AE003FA725 /* DIN Bold.otf in Resources */,
 				26D2D91F26B0428A003FA725 /* DIN.otf in Resources */,
 				262D609A26ECBA46008F6FA0 /* GoogleService-Info.plist in Resources */,
