@@ -4,8 +4,6 @@
 
 #  UBudget
 
----
-
 <p align="center">
-  <img src="Screenshots/DarkMode.png?raw=true" alt="Dark Mode" width=700/>
+  <img src="Screenshots/DarkMode.png?raw=true" alt="Dark Mode" width=5000/>
 </p>
