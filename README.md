@@ -7,3 +7,7 @@
 <p align="center">
   <img src="Screenshots/DarkMode.png?raw=true" alt="Dark Mode" width=5000/>
 </p>
+
+<p align="center">
+  <img src="Screenshots/Onboarding.png?raw=true" alt="Dark Mode" width=5000/>
+</p>
