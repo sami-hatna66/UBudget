@@ -4,6 +4,8 @@
 
 #  UBudget
 
+UBudget is an ios budgeting app intended for people with a fixed amount of mony to live on for a set amount of time. UBudget is coded in Swift, using SwiftUI for the GUI, UserDefaults for local persistent storage and Firebase for online persistent storage.
+
 <p align="center">
   <img src="Screenshots/Row1.png?raw=true" alt="Features" width=5000/>
 </p>
