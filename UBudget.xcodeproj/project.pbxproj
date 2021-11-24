@@ -25,6 +25,7 @@
 		2648514E26B093DF009954C6 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648514D26B093DF009954C6 /* InfoView.swift */; };
 		2650EC0D273811760041EDAA /* GithubHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 2650EC0C273811760041EDAA /* GithubHeader.png */; };
 		2667BFF626CFD5EE0025F6A1 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2667BFF526CFD5EE0025F6A1 /* Toolbar.swift */; };
+		26792B5F274E71D20076C56D /* Row2.png in Resources */ = {isa = PBXBuildFile; fileRef = 26792B5E274E71D20076C56D /* Row2.png */; };
 		267C478026DD4CE5003FA716 /* SaveStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267C477F26DD4CE5003FA716 /* SaveStruct.swift */; };
 		267FB32326D5644C00947352 /* DeductibleStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FB32226D5644C00947352 /* DeductibleStruct.swift */; };
 		267FB32726D5703100947352 /* AddDeductible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FB32626D5703100947352 /* AddDeductible.swift */; };
@@ -124,6 +125,7 @@
 		2648514D26B093DF009954C6 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		2650EC0C273811760041EDAA /* GithubHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GithubHeader.png; sourceTree = "<group>"; };
 		2667BFF526CFD5EE0025F6A1 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		26792B5E274E71D20076C56D /* Row2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Row2.png; sourceTree = "<group>"; };
 		267C477F26DD4CE5003FA716 /* SaveStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStruct.swift; sourceTree = "<group>"; };
 		267FB32226D5644C00947352 /* DeductibleStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductibleStruct.swift; sourceTree = "<group>"; };
 		267FB32626D5703100947352 /* AddDeductible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeductible.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				26ABC8542746F3AD00298187 /* DarkMode.png */,
 				2650EC0C273811760041EDAA /* GithubHeader.png */,
 				26BFC74E274948EC006C6DDE /* Row1.png */,
+				26792B5E274E71D20076C56D /* Row2.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				26ABC8532746F2BE00298187 /* Onboarding.png in Resources */,
 				26D2D91226B0421D003FA725 /* Preview Assets.xcassets in Resources */,
 				26D2D90F26B0421D003FA725 /* Assets.xcassets in Resources */,
+				26792B5F274E71D20076C56D /* Row2.png in Resources */,
 				26ABC8552746F3AD00298187 /* DarkMode.png in Resources */,
 				2650EC0D273811760041EDAA /* GithubHeader.png in Resources */,
 			);
